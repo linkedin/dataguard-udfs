@@ -1,0 +1,24 @@
+plugins {
+  id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+dependencies {
+  compileOnly rootProject.ext.sparkCore_2_12
+  compileOnly rootProject.ext.sparkHive_2_12
+  compileOnly rootProject.ext.sparkSql_2_12
+  implementation project(":extensions:dataguard-spark")
+  testImplementation project(path: ':extensions:dataguard-spark')
+  testImplementation project(path: ':extensions:dataguard-spark', configuration: 'testArtifacts')
+  testImplementation rootProject.ext.sparkCatalyst_2_12
+  testImplementation rootProject.ext.sparkCore_2_12
+  testImplementation rootProject.ext.sparkHive_2_12
+  testImplementation rootProject.ext.sparkSql_2_12
+}
+
+shadowJar {
+  archiveClassifier.set('all')
+  mergeServiceFiles()
+  manifest {
+    attributes 'Main-Class': 'com.linkedin.dataguard.benchmark.enforcement.DataGenerator'
+  }
+}

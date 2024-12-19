@@ -1,0 +1,126 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "i",
+        "type": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "tag",
+              "type": "integer",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "field0",
+              "type": "integer",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "field1",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "fUnion",
+                    "type": {
+                      "type": "struct",
+                      "fields": [
+                        {
+                          "name": "tag",
+                          "type": "integer",
+                          "nullable": true,
+                          "metadata": {}
+                        },
+                        {
+                          "name": "field0",
+                          "type": "boolean",
+                          "nullable": true,
+                          "metadata": {}
+                        },
+                        {
+                          "name": "field1",
+                          "type": "integer",
+                          "nullable": true,
+                          "metadata": {}
+                        }
+                      ]
+                    },
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "i": {
+        "tag": 1,
+        "field1": {
+          "fUnion": {
+            "tag": 0,
+            "field0": true
+          }
+        }
+      }
+    },
+    {
+      "i": {
+        "tag": 1,
+        "field1": {
+          "fUnion": {
+            "tag": 1,
+            "field1": 123
+          }
+        }
+      }
+    },
+    {
+      "i": {
+        "tag": 0,
+        "field0": 123
+      }
+    },
+    {
+      "i": {}
+    },
+    {
+      "i": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "i": null
+    },
+    {
+      "i": null
+    },
+    {
+      "i": null
+    },
+    {
+      "i": null
+    },
+    {
+      "i": null
+    },
+    null
+  ],
+  "tmsPath": "i[type=struct<notypematch>]",
+  "topColumn": "i",
+  "condition": true,
+  "defaultValueString": "null"
+}

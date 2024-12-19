@@ -1,0 +1,88 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "i",
+        "type": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "tag",
+              "type": "integer",
+              "nullable": true
+            },
+            {
+              "name": "field0",
+              "type": "integer",
+              "nullable": true
+            },
+            {
+              "name": "field1",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "fUnion",
+                    "type": {
+                      "type": "struct",
+                      "fields": [
+                        {
+                          "name": "idUnion",
+                          "type": {
+                            "type": "struct",
+                            "fields": [
+                              {
+                                "name": "tag",
+                                "type": "integer",
+                                "nullable": true
+                              },
+                              {
+                                "name": "field0",
+                                "type": "boolean",
+                                "nullable": true
+                              },
+                              {
+                                "name": "field1",
+                                "type": "integer",
+                                "nullable": true
+                              }
+                            ]
+                          },
+                          "nullable": true
+                        }
+                      ]
+                    },
+                    "nullable": true
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "i": {
+        "tag": 1,
+        "field1": {
+          "fUnion": {
+            "idUnion": {
+              "tag": 1,
+              "field1": 123
+            }
+          }
+        }
+      }
+    }
+  ],
+  "idField": "i",
+  "pathName": "i[type=fUnion].idUnion[type=integer]",
+  "errorMessage" : "java.lang.UnsupportedOperationException: Expect extractor to return StdArray. Actual return type: com.linkedin.transport.spark.data.SparkInteger"
+}

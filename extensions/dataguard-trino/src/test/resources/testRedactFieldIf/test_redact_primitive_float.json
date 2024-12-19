@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "CAST(123.45 AS REAL)",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "CAST(1.23 AS REAL)",
+    "NULL"
+  ],
+  "tmsPath": "fFloat",
+  "condition": true,
+  "defaultValueString": "CAST(1.23 AS REAL)"
+}

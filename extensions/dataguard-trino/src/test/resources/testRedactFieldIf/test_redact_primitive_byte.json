@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "X'0102'",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "X'010203'",
+    "NULL"
+  ],
+  "tmsPath": "fBytes",
+  "condition": true,
+  "defaultValueString": "X'010203'"
+}

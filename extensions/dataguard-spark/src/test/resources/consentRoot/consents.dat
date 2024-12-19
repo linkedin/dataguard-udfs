@@ -1,0 +1,11 @@
+1 foo true
+2 foo false
+123 foo true
+456 foo true
+321 foo true
+654 foo false
+urn:li:member:234 foo true
+urn:li:member:567 foo true
+urn:li:member:1369164562 foo true
+urn:li:member:53646376 foo true
+urn:li:member:4387771 foo false

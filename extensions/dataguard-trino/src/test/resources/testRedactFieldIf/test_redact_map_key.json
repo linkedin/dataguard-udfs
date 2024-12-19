@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "CAST (MAP(ARRAY['k1'], ARRAY[ROW(TRUE, 123)]) AS MAP<VARCHAR, ROW(fBool BOOLEAN, fInt INTEGER)>)",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "NULL",
+    "NULL"
+  ],
+  "tmsPath": "d.[key=string]",
+  "condition": true,
+  "defaultValueString": "NULL"
+}

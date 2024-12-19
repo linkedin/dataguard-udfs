@@ -1,0 +1,33 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fLong",
+        "type": "long",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fLong": 12345
+    },
+    {
+      "fLong": null
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fLong": 0
+    },
+    {
+      "fLong": 0
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fLong')",
+  "topColumn": "fLong",
+  "condition": true,
+  "defaultValueDataType": "'LONG'"
+}

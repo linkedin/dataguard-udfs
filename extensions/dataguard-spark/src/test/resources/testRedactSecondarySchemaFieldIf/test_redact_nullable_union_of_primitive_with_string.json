@@ -1,0 +1,15 @@
+{
+  "schema": {"type":"struct","fields":[{"name":"e","type":"integer","nullable":true,"metadata":{}}]},
+  "input": [
+    {"e":78},
+    {"e":null}
+  ],
+  "expectedOutput": [
+    {"e":0},
+    {"e":0}
+  ],
+  "dataguardPaths": "ARRAY('$.e')",
+  "topColumn": "e",
+  "condition": true,
+  "defaultValueDataType": "'INT'"
+}

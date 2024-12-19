@@ -1,0 +1,33 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fBool",
+        "type": "boolean",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fBool": true
+    },
+    {
+      "fBool": null
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fBool": true
+    },
+    {
+      "fBool": null
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fBool')",
+  "topColumn": "fBool",
+  "condition": false,
+  "defaultValueDataType": "'BOOLEAN'"
+}

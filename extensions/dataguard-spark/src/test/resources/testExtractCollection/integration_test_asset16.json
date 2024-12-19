@@ -1,0 +1,94 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "privacyIdentities",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "value",
+                "nullable": true,
+                "type": {
+                  "type": "struct",
+                  "fields": [
+                    {
+                      "name": "member",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "enterpriseProfile",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    {
+                      "name": "sponsoredAccount",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true
+      }
+    ]
+  },
+  "input": [
+    {
+      "privacyIdentities":[
+        {"value": {"member": "urn:li:member:1369164562", "enterpriseProfile": "None", "sponsoredAccount": "None"}},
+        {"value": {"member": "urn:li:member:53646376", "enterpriseProfile": "None", "sponsoredAccount": "None"}}
+      ]
+    },
+    {
+      "privacyIdentities":[
+        {"value": {"member": "urn:li:member:4387771", "enterpriseProfile": "None", "sponsoredAccount": "None"}}
+      ]
+    },
+    {
+      "privacyIdentities":[]
+    }
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "urn:li:member:1369164562",
+        "urn:li:member:53646376"
+      ]
+    },
+    {
+      "extracted": [
+        "urn:li:member:4387771"
+      ]
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "privacyIdentities",
+  "pathName": "privacyIdentities[type=array].[type=avro.com.linkedin.events.common.digitalmedia.MediaUserIdentity].value[type=avro.com.linkedin.events.common.digitalmedia.innerMediaUserIdentity.ValueWrapper].member[type=string]",
+  "expectedConsents": [true, false, true]
+}

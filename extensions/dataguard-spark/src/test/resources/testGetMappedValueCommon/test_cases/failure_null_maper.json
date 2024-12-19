@@ -1,0 +1,22 @@
+{
+  "mappingSources": [
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "hdfsFilePath": "testGetMappedValueCommon/test_pagekey_purpose_mappings.avro"
+    }
+  ],
+  "input" : [
+    {
+      "mapperTag": null,
+      "sourceField": "pagekey_foo"
+    }
+  ],
+  "output": [
+    {
+      "mappedValue" : "ignore"
+    }
+  ],
+  "failure" : {
+    "message": "mapper tag cannot be null"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "b",
+        "type": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "fBool1",
+              "type": "boolean",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "fBool2",
+              "type": "boolean",
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "b": {
+        "fBool1": true,
+        "fBool2": false
+      }
+    },
+    {
+      "b": {
+        "fBool1": false
+      }
+    },
+    {
+      "b": {
+        "fBool2": true
+      }
+    },
+    {
+      "b": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "b": {
+        "fBool1": false,
+        "fBool2": false
+      }
+    },
+    {
+      "b": {
+        "fBool1": false
+      }
+    },
+    {
+      "b": {
+        "fBool2": false
+      }
+    },
+    {
+      "b": null
+    },
+    null
+  ],
+  "tmsPath": "b.fBool1###b.fBool2",
+  "topColumn": "b",
+  "condition": true,
+  "defaultValueString": "false"
+}

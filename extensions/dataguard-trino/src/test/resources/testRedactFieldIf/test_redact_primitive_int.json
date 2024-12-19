@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "123",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "NULL",
+    "NULL"
+  ],
+  "tmsPath": "fInt",
+  "condition": true,
+  "defaultValueString": "NULL"
+}

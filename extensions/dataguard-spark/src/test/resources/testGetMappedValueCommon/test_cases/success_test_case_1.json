@@ -1,0 +1,53 @@
+{
+  "mappingSources": [
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "hdfsFilePath": "testGetMappedValueCommon/test_pagekey_purpose_mappings.avro"
+    }
+  ],
+  "input" : [
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "sourceField": "pagekey_foo"
+    },
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "sourceField": "urn:li:page:pagekey_foo"
+    },
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "sourceField": "pagekey_bar"
+    },
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "sourceField": "PAGEKEY_bar"
+    },
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "sourceField": "non_existent"
+    },
+    {
+      "mapperTag": "callisto__getpurposeforpagekey"
+    }
+  ],
+  "output" : [
+    {
+      "mappedValue" : "urn:li:purpose:flagship"
+    },
+    {
+      "mappedValue" : "urn:li:purpose:flagship"
+    },
+    {
+      "mappedValue" : "urn:li:purpose:learning"
+    },
+    {
+      "mappedValue" : "urn:li:purpose:learning"
+    },
+    {
+      "mappedValue" : "__dataguard__mapped_value_unknown"
+    },
+    {
+      "mappedValue" : "__dataguard__mapped_value_unknown"
+    }
+  ]
+}

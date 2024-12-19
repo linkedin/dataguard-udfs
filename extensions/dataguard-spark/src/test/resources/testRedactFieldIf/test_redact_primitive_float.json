@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fFloat",
+        "type": "long",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fFloat": 123.45
+    },
+    {
+      "fFloat": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fFloat": 1.23
+    },
+    {
+      "fFloat": null
+    },
+    null
+  ],
+  "tmsPath": "fFloat",
+  "topColumn": "fFloat",
+  "condition": true,
+  "defaultValueString": "1.23"
+}

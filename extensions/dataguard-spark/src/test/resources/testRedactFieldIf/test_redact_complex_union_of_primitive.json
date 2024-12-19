@@ -1,0 +1,81 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "f",
+        "type": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "tag",
+              "type": "integer",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "field0",
+              "type": "integer",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "field1",
+              "type": "boolean",
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "f": {
+        "tag": 0,
+        "field0": 123
+      }
+    },
+    {
+      "f": {
+        "tag": 0,
+        "field1": true
+      }
+    },
+    {
+      "f": {}
+    },
+    {
+      "f": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "f": {
+        "tag": 0,
+        "field0": 456
+      }
+    },
+    {
+      "f": {
+        "tag": 0,
+        "field1": true
+      }
+    },
+    {
+      "f": {}
+    },
+    {
+      "f": null
+    },
+    null
+  ],
+  "tmsPath": "f[type=int]",
+  "topColumn": "f",
+  "condition": true,
+  "defaultValueString": "456"
+}

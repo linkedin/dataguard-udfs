@@ -1,0 +1,52 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "id",
+                "type": "boolean",
+                "nullable": true
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": [
+        {
+          "id": true
+        },
+        {
+          "id": false
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "id": false
+        },
+        {
+          "id": true
+        }
+      ]
+    },
+    null
+  ],
+  "idField": "x",
+  "pathName": "x.[type=array].id",
+  "errorMessage": "Unrecognized child Type: class com.linkedin.transport.spark.data.SparkBoolean"
+}

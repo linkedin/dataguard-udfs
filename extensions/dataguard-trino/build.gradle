@@ -1,0 +1,83 @@
+apply plugin:'distribution'
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  }
+}
+
+dependencies {
+  // This is compileOnly because SPI classes will be provided at runtime by Trino server:
+  // https://trino.io/docs/current/develop/spi-overview.html
+  compileOnly rootProject.ext.trinoSpi
+  implementation project(':core:dataguard-fieldpaths-antlr_4_11_1')
+  implementation project(':transport:dataguard-transport-common')
+  implementation project(':transport:dataguard-transport-trino')
+  implementation rootProject.ext.airliftUnits
+  implementation rootProject.ext.antlr4_4_11_1
+  implementation rootProject.ext.guava
+  implementation rootProject.ext.jodaTime
+  implementation rootProject.ext.transportApi
+  implementation rootProject.ext.transportTrino
+  testImplementation rootProject.ext.antlr4_4_11_1
+  testImplementation rootProject.ext.commonsIo
+  testImplementation rootProject.ext.guava
+  testImplementation rootProject.ext.trinoMainTests
+  testImplementation rootProject.ext.trinoTesting
+}
+
+// Build Zip/tar artifacts, since that is how Trino server expects plugin artifacts to be bundled.
+// They are available in `extensions/dataguard-trino/build/distributions/`
+plugins.withId('distribution') {
+  sourceSets {
+    // sourceSet used for configuring any META-INF services to keep them out of the normal JAR
+    services { }
+  }
+
+  tasks.register('servicesJar', Jar) {
+    archiveClassifier = 'services'
+    from sourceSets.services.output
+  }
+  distZip.dependsOn servicesJar
+  distTar.dependsOn servicesJar
+
+  distributions {
+    main {
+      contents {
+        from jar
+        from servicesJar
+        from project.configurations.runtimeClasspath
+      }
+    }
+  }
+
+  artifacts {
+    archives jar, servicesJar, distTar
+  }
+
+  build.dependsOn distTar
+}
+
+configurations {
+  configureEach {
+    // conflicts with log4j-over-slf4j brought by trino-plugin-toolkit
+    exclude group: 'log4j'
+    // conflicts with log4j-over-slf4j brought by trino-plugin-toolkit
+    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    // conflicts with jcl-over-slf4j brought by trino-plugin-toolkit
+    exclude group: 'commons-logging'
+  }
+}
+
+test {
+  useTestNG()
+  /*
+     (copied from trino-root/pom.xml)
+     America/Bahia_Banderas has:
+     offset change since 1970 (offset Jan 1970: -08:00, offset Jan 2018: -06:00)
+     DST (e.g. at 2017-04-02 02:00:00 clocks turned forward 1 hour; 2017-10-29 02:00:00 clocks turned backward 1 hour)
+     has forward offset change on first day of epoch (1970-01-01 00:00:00 clocks turned forward 1 hour)
+     had forward change at midnight (1970-01-01 00:00:00 clocks turned forward 1 hour)
+   */
+  systemProperty "user.timezone", "America/Bahia_Banderas"
+  maxHeapSize = "1024m"
+}

@@ -1,0 +1,65 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "map",
+          "keyType": "string",
+          "valueType": "string",
+          "valueContainsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": {
+        "a": "b",
+        "c": "d"
+      }
+    },
+    {
+      "x": {
+        "e": "f"
+      }
+    },
+    null
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "b",
+        "d"
+      ]
+    },
+    {
+      "extracted": [
+        "f"
+      ]
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "x",
+  "pathName": "x.[value=string]"
+}

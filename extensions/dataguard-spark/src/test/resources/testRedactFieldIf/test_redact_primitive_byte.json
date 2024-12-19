@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fBytes",
+        "type": "binary",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fBytes": "AQIDBA=="
+    },
+    {
+      "fBytes": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fBytes": "AQID"
+    },
+    {
+      "fBytes": null
+    },
+    null
+  ],
+  "tmsPath": "fBytes",
+  "topColumn": "fBytes",
+  "condition": true,
+  "defaultValueString": "CAST(X'010203' AS BINARY)"
+}

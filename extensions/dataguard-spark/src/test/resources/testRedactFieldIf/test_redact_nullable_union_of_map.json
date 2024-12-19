@@ -1,0 +1,82 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "h",
+        "type": {
+          "type": "map",
+          "keyType": "string",
+          "valueType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "fBool",
+                "type": "boolean",
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "fInt",
+                "type": "integer",
+                "nullable": true,
+                "metadata": {}
+              }
+            ]
+          },
+          "valueContainsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "h": {
+        "k1": {
+          "fBool": true,
+          "fInt": 123
+        },
+        "k2": {
+          "fInt": 123
+        }
+      }
+    },
+    {
+      "h": {
+        "k1": null
+      }
+    },
+    {
+      "h": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "h": {
+        "k1": {
+          "fBool": false,
+          "fInt": 123
+        },
+        "k2": {
+          "fInt": 123
+        }
+      }
+    },
+    {
+      "h": {
+        "k1": null
+      }
+    },
+    {
+      "h": null
+    },
+    null
+  ],
+  "tmsPath": "h[type=map].[value=struct<fBool:boolean,fInt:int>].fBool",
+  "topColumn": "h",
+  "condition": true,
+  "defaultValueString": "false"
+}

@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "CAST (MAP(ARRAY['k1'], ARRAY[ROW(TRUE, 123)]) AS MAP<VARCHAR, ROW(fBool BOOLEAN, fInt INTEGER)>)",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "CAST (MAP(ARRAY['k1'], ARRAY[NULL]) AS MAP<VARCHAR, ROW(fBool BOOLEAN, fInt INTEGER)>)",
+    "NULL"
+  ],
+  "tmsPath": "d.[value=struct<fBool:boolean,fInt:int>]",
+  "condition": true,
+  "defaultValueString": "NULL"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+{
+  "name": "fEnum",
+  "type": "string",
+  "nullable": true,
+  "metadata": {}
+}
+    ]
+  },
+  "input": [
+    {
+      "fEnum": "VAL_1"
+    },
+    {
+      "fEnum": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fEnum": "VAL_2"
+    },
+    {
+      "fEnum": null
+    },
+    null
+  ],
+  "tmsPath": "fEnum",
+  "topColumn": "fEnum",
+  "condition": true,
+  "defaultValueString": "\"VAL_2\""
+}

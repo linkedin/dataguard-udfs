@@ -1,0 +1,63 @@
+plugins {
+  id 'distribution'
+  id("me.champeau.jmh") version "0.7.2"
+  id 'scala'
+}
+
+configurations.all {
+  // Artifactory does not have this artifact
+  exclude group: 'org.apache.curator', module: 'apache-curator'
+  exclude group: "org.apache.parquet", module: "parquet-hadoop-bundle"
+}
+
+dependencies {
+  compileOnly rootProject.ext.jmh
+  compileOnly rootProject.ext.scalaLibrary
+  compileOnly rootProject.ext.sparkSql_2_12
+  implementation project(':extensions:dataguard-spark')
+  implementation project(':transport:dataguard-transport-common')
+  implementation project(':transport:dataguard-transport-spark')
+  implementation rootProject.ext.guava
+  implementation rootProject.ext.transportApi
+  implementation rootProject.ext.transportSpark
+  implementation rootProject.ext.transportTypeSystem
+  jmh rootProject.ext.jmh
+  jmhAnnotationProcessor rootProject.ext.jmhAnnotations
+  testImplementation rootProject.ext.guava
+  testImplementation rootProject.ext.jmh
+  testImplementation rootProject.ext.scalaLibrary
+  testImplementation rootProject.ext.sparkSql_2_12
+}
+
+// If classpath is too long, java will give error=7. So put classpath in jar to bypass it.
+// With this setup, there is no need to setup 'jmh.separateClasspathJAR' jvm option,
+// which have issues with JMH.
+task jmhClassPathJar(type: Jar) {
+  from sourceSets.jmh.output.classesDirs
+  from sourceSets.jmh.output.resourcesDir
+  inputs.files sourceSets.jmh.runtimeClasspath
+  archiveAppendix = 'jmh-classpath'
+  doFirst {
+    manifest {
+      attributes('Main-Class': 'org.openjdk.jmh.Main')
+      attributes 'Class-Path': sourceSets.jmh.runtimeClasspath.collect { f -> f.toURI().toString() }.join(' ')
+    }
+  }
+}
+
+task jmhExec(type: JavaExec, description: 'Executing JMH benchmarks') {
+  classpath = files(tasks.jmhClassPathJar)
+  main = "com.linkedin.dataguard.runtime.benchmark.spark.SparkDataGuardEnforcementBenchmark"
+  outputs.upToDateWhen { false }
+
+  def addNIOJvmArgs = [
+      "-Xms4g",
+      "-Xmx8g"
+  ]
+
+  jvmArgs = addNIOJvmArgs
+
+  doLast {
+    println '↑↑↑↑↑↑ Please visit https://jmh.morethan.io/ to visualize above JMH result json. ↑↑↑↑↑↑'
+  }
+}

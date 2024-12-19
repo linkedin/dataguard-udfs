@@ -1,0 +1,89 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "i",
+        "type": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "tag",
+              "type": "integer",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "field0",
+              "type": "integer",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "field1",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "f1",
+                    "type": "integer",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "f2",
+                    "type": "boolean",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "i": {
+        "tag": 1,
+        "field1": {
+          "f1": 123,
+          "f2": true
+        }
+      }
+    },
+    {
+      "i": {
+        "tag": 0,
+        "field0": 123
+      }
+    }
+  ],
+  "expectedOutput": [
+    {
+      "i": {
+        "tag": 1,
+        "field1": {
+          "f1": null,
+          "f2": true
+        }
+      }
+    },
+    {
+      "i": {
+        "tag": 0,
+        "field0": 123
+      }
+    }
+  ],
+  "tmsPath": "i[type=struct<notypematch>].f1",
+  "topColumn": "i",
+  "condition": true,
+  "defaultValueString": "null"
+}

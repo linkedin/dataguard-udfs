@@ -1,0 +1,19 @@
+rootProject.name='policy-enforcement-code'
+
+def modules = [
+    ':benchmark:dataguard-enforcement-udfs-benchmark-impl-cluster',
+    ':benchmark:dataguard-enforcement-udfs-microbenchmark',
+    'core:dataguard-fieldpaths',
+    'core:dataguard-fieldpaths-antlr_4_11_1',
+    'core:dataguard-fieldpaths-antlr_4_9_3',
+    'extensions:dataguard-spark',
+    'extensions:dataguard-trino',
+    'transport:dataguard-transport-common',
+    'transport:dataguard-transport-java',
+    'transport:dataguard-transport-spark',
+    'transport:dataguard-transport-trino'
+]
+
+modules.each { module ->
+  include "${module}"
+}

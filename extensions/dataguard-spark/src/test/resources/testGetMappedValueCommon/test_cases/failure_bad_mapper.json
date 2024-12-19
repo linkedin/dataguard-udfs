@@ -1,0 +1,22 @@
+{
+  "mappingSources": [
+    {
+      "mapperTag": "callisto__getpurposeforpagekey",
+      "hdfsFilePath": "testGetMappedValueCommon/test_pagekey_purpose_mappings.avro"
+    }
+  ],
+  "input" : [
+    {
+      "mapperTag": "invalid_mapper_name",
+      "sourceField": "pagekey_foo"
+    }
+  ],
+  "output": [
+    {
+      "mappedValue" : "ignore"
+    }
+  ],
+  "failure" : {
+    "message": "Invalid mapper tag '.*', not found in the supported mappers: .*"
+  }
+}

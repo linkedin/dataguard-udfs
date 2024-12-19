@@ -1,0 +1,70 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "c",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "fBool",
+                "type": "boolean",
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "fInt",
+                "type": "integer",
+                "nullable": true,
+                "metadata": {}
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "c": [
+        {
+          "fBool": true,
+          "fInt": 123
+        },
+        {
+          "fInt": 123
+        }
+      ]
+    },
+    {
+      "c": []
+    }
+  ],
+  "expectedOutput": [
+    {
+      "c": [
+        {
+          "fBool": false,
+          "fInt": 123
+        },
+        {
+          "fBool": false,
+          "fInt": 123
+        }
+      ]
+    },
+    {
+      "c": []
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.c[:].fBool')",
+  "topColumn": "c",
+  "condition": true,
+  "defaultValueDataType": "'BOOLEAN'"
+}

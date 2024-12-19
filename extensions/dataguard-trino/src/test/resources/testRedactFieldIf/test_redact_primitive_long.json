@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "CAST (123 AS BIGINT)",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "CAST (456 AS BIGINT)",
+    "NULL"
+  ],
+  "tmsPath": "fLong",
+  "condition": true,
+  "defaultValueString": "CAST (456 AS BIGINT)"
+}

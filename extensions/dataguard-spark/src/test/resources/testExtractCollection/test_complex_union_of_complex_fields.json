@@ -1,0 +1,257 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "i",
+                "type": {
+                  "type": "struct",
+                  "fields": [
+                    {
+                      "name": "tag",
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    {
+                      "name": "field0",
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    {
+                      "name": "field1",
+                      "type": {
+                        "type": "struct",
+                        "fields": [
+                          {
+                            "name": "fUnion",
+                            "type": {
+                              "type": "struct",
+                              "fields": [
+                                {
+                                  "name": "idUnion",
+                                  "type": {
+                                    "type": "struct",
+                                    "fields": [
+                                      {
+                                        "name": "tag",
+                                        "type": "integer",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "name": "field0",
+                                        "type": "boolean",
+                                        "nullable": true
+                                      },
+                                      {
+                                        "name": "field1",
+                                        "type": "integer",
+                                        "nullable": true
+                                      }
+                                    ]
+                                  },
+                                  "nullable": true
+                                }
+                              ]
+                            },
+                            "nullable": true
+                          }
+                        ]
+                      },
+                      "nullable": true,
+                      "metadata": {}
+                    }
+                  ]
+                },
+                "nullable": true,
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": [
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 1,
+                  "field1": 123
+                }
+              }
+            }
+          }
+        },
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 1,
+                  "field1": 456
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 1,
+                  "field1": 321
+                }
+              }
+            }
+          }
+        },
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 0,
+                  "field0": true
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 1,
+                  "field1": 234
+                }
+              }
+            }
+          }
+        },
+        {
+          "i": {
+            "tag": 0,
+            "field0": 111
+          }
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 1,
+                  "field1": 567
+                }
+              }
+            }
+          }
+        },
+        {
+          "i": null
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "i": {
+            "tag": 1,
+            "field1": {
+              "fUnion": {
+                "idUnion": {
+                  "tag": 0,
+                  "field1": false
+                }
+              }
+            }
+          }
+        },
+        {
+          "i": {
+            "tag": 0,
+            "field0": 222
+          }
+        }
+      ]
+    },
+    null
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "extracted": [
+        "321"
+      ]
+    },
+    {
+      "extracted": [
+        "234"
+      ]
+    },
+    {
+      "extracted": [
+        "567"
+      ]
+    },
+    {
+      "extracted": []
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "x",
+  "pathName": "x.[type=array].i[type=fUnion].idUnion[type=integer]"
+}

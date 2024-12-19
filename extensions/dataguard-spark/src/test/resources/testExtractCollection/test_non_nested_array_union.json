@@ -1,0 +1,112 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "elementWrapper",
+                "nullable": true,
+                "type": {
+                  "type": "struct",
+                  "fields": [
+                    {
+                      "name": "boolWrapper",
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    {
+                      "name": "idWrapper",
+                      "type": {
+                        "type": "struct",
+                        "fields": [
+                          {
+                            "name": "id",
+                            "type": "integer",
+                            "nullable": true
+                          }
+                        ]
+                      },
+                      "nullable": true
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": [
+        {
+          "elementWrapper": {"idWrapper": {"id": 123}}
+        },
+        {
+          "elementWrapper": {"idWrapper": {"id": 456}}
+        },
+        {
+          "elementWrapper": {"boolWrapper": true}
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "elementWrapper": {"idWrapper": {"id": 321}}
+        },
+        {
+          "elementWrapper": {"idWrapper": {"id": 654}}
+        },
+        {
+          "elementWrapper": {"boolWrapper": false}
+        }
+      ]
+    },
+    null
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "extracted": [
+        "321",
+        "654"
+      ]
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "x",
+  "pathName": "x[type=rootStruct].[type=array].elementWrapper.idWrapper.id[type=integer]"
+}

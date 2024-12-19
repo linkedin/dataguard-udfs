@@ -1,0 +1,38 @@
+plugins {
+  id 'distribution'
+  id 'scala'
+}
+
+dependencies {
+  // Use compileOnly for dependencies provided on the cluster
+  compileOnly rootProject.ext.scalaLibrary
+  compileOnly rootProject.ext.sparkSql_2_12
+  implementation project(':core:dataguard-fieldpaths')
+  implementation project(':transport:dataguard-transport-common')
+  implementation project(':transport:dataguard-transport-spark')
+  implementation rootProject.ext.hadoopCommon
+  implementation rootProject.ext.transportApi
+  implementation rootProject.ext.transportSpark
+  testImplementation project(path: ':core:dataguard-fieldpaths', configuration: 'testArtifacts')
+  testImplementation rootProject.ext.guava
+  testImplementation rootProject.ext.jsonSimple
+  testImplementation rootProject.ext.junitJupiterApi
+  testImplementation rootProject.ext.sparkHive_2_12
+  testImplementation rootProject.ext.sparkSql_2_12
+}
+
+configurations {
+  testArtifacts {
+    // This is needed because the consumers need the runtime
+    // dependencies of the test code. Otherwise, consumers will
+    // need to fetch these dependencies themselves on adhoc basis.
+    extendsFrom testRuntimeClasspath
+  }
+}
+
+task testJar(type: Jar) {
+  from sourceSets.test.output
+  classifier = 'tests'
+}
+
+artifacts.add('testArtifacts', testJar)

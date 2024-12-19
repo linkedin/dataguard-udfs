@@ -1,0 +1,15 @@
+{
+  "inputStrings": [
+    "CAST (ARRAY[ROW(TRUE, 123)] AS ARRAY<ROW(fBool BOOLEAN, fInt INTEGER)>)",
+    "ARRAY[NULL]",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "ARRAY[NULL]",
+    "ARRAY[NULL]",
+    "NULL"
+  ],
+  "tmsPath": "c.[type=struct<fBool:boolean,fInt:int>]",
+  "condition": true,
+  "defaultValueString": "NULL"
+}

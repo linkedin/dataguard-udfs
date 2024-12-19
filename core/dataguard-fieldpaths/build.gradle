@@ -1,0 +1,5 @@
+apply from: '../dataguard-fieldpaths-common.gradle'
+
+dependencies {
+  antlr rootProject.ext.antlr4_4_9_3
+}

@@ -1,0 +1,33 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+{
+  "name": "fString",
+  "type": "string",
+  "nullable": true,
+  "metadata": {}
+}
+    ]
+  },
+  "input": [
+    {
+      "fString": "VAL_1"
+    },
+    {
+      "fString": null
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fString": ""
+    },
+    {
+      "fString": ""
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fString')",
+  "topColumn": "fString",
+  "condition": true,
+  "defaultValueDataType": "'STRING'"
+}

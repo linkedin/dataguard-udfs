@@ -1,0 +1,33 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fBytes",
+        "type": "binary",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fBytes": "AQIDBA=="
+    },
+    {
+      "fBytes": null
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fBytes": null
+    },
+    {
+      "fBytes": null
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fBytes')",
+  "topColumn": "fBytes",
+  "condition": true,
+  "defaultValueDataType": "'BINARY'"
+}

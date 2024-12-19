@@ -1,0 +1,134 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fdsMap",
+        "type": {
+          "type": "map",
+          "keyType": "string",
+          "valueType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "indices0",
+                "type": {
+                  "type": "array",
+                  "elementType": "string",
+                  "containsNull": true
+                },
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "values",
+                "type": {
+                  "type": "array",
+                  "elementType": "float",
+                  "containsNull": true
+                },
+                "nullable": true,
+                "metadata": {}
+              }
+            ]
+          },
+          "valueContainsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fdsMap": {
+        "adFootprint_stat": {
+          "indices0": [
+            "anyCtr",
+            "click",
+            "totalClicks"
+          ],
+          "values": [
+            1.0,
+            3.0,
+            5.0
+          ]
+        },
+        "member_footprint_recent_feed_actions_member_id": {
+          "indices0": [
+            "actionCount"
+          ],
+          "values": [
+            3.0
+          ]
+        }
+      }
+    },
+    {
+      "fdsMap": {
+        "adFootprint_stat": {
+          "indices0": [
+            "anyCtr"
+          ],
+          "values": [
+            1.0
+          ]
+        },
+        "member_footprint_recent_feed_actions_member_id": {
+          "indices0": [
+            "actionCount"
+          ],
+          "values": [
+            3.0
+          ]
+        }
+      }
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fdsMap": {
+        "adFootprint_stat": {
+          "indices0": [
+            "anyCtr",
+            "click",
+            "totalClicks"
+          ],
+          "values": [
+            1.0,
+            3.0,
+            5.0
+          ]
+        },
+        "member_footprint_recent_feed_actions_member_id": {
+          "indices0": [
+            "actionCount"
+          ],
+          "values": null
+        }
+      }
+    },
+    {
+      "fdsMap": {
+        "adFootprint_stat": {
+          "indices0": [
+            "anyCtr"
+          ],
+          "values": [
+            1.0
+          ]
+        },
+        "member_footprint_recent_feed_actions_member_id": {
+          "indices0": [
+            "actionCount"
+          ],
+          "values": null
+        }
+      }
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fdsMap[\\'member_footprint_recent_feed_actions_member_id\\'].values')",
+  "topColumn": "fdsMap",
+  "condition": true,
+  "defaultValueDataType": "'ARRAY'"
+}

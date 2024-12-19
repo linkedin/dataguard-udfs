@@ -1,0 +1,87 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "c",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "fInt1",
+                "type": "integer",
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "fInt2",
+                "type": "integer",
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "fBool1",
+                "type": "boolean",
+                "nullable": true,
+                "metadata": {}
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "c": [
+        {
+          "fInt1": 123,
+          "fInt2": 456
+        },
+        {
+          "fInt1": 789,
+          "fBool1": true
+        },
+        {
+          "fInt2": 101112,
+          "fBool1": false
+        }
+      ]
+    },
+    {
+      "c": []
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "c": [
+        {
+          "fInt1": null,
+          "fInt2": null
+        },
+        {
+          "fInt1": null,
+          "fBool1": true
+        },
+        {
+          "fInt2": null,
+          "fBool1": false
+        }
+      ]
+    },
+    {
+      "c": []
+    },
+    null
+  ],
+  "tmsPath": "c.[type=struct<fInt1:int,fInt2:int,fBool1:boolean>].fInt2###c.[type=struct<fInt1:int,fInt2:int,fBool1:boolean>].fInt1",
+  "topColumn": "c",
+  "condition": true,
+  "defaultValueString": "null"
+}

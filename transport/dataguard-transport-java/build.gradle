@@ -1,0 +1,26 @@
+dependencies {
+    implementation project(':transport:dataguard-transport-common')
+    implementation rootProject.ext.guava
+    implementation rootProject.ext.transportApi
+    implementation rootProject.ext.transportTypeSystem
+    testImplementation project(':transport:dataguard-transport-common')
+    testImplementation rootProject.ext.transportApi
+}
+
+// Expose test artifacts as a jar
+configurations {
+    testArtifacts {
+        // This is needed because the consumers need the runtime
+        // dependencies of the test code. Otherwise, consumers will
+        // need to fetch these dependencies themselves on adhoc basis.
+        extendsFrom testRuntimeClasspath
+    }
+}
+
+task testJar(type: Jar) {
+    from sourceSets.test.output
+    classifier = 'tests'
+}
+
+def testJar_artifact = artifacts.add('testArtifacts', testJar)
+

@@ -1,0 +1,30 @@
+apply from: '../dataguard-fieldpaths-common.gradle'
+
+dependencies {
+    antlr rootProject.ext.antlr4_4_11_1
+    implementation rootProject.ext.guava
+}
+
+sourceSets {
+    main {
+        antlr {
+            srcDirs = project(':core:dataguard-fieldpaths').sourceSets.main.antlr.srcDirs
+        }
+        java {
+            srcDirs += project(':core:dataguard-fieldpaths').sourceSets.main.java.srcDirs.toList().findAll {
+                // Remove generated-src from tms-paths, because we should use generated code in this module with
+                // custom ANTLR version
+                dir -> !dir.toString().contains("generated-src")
+            }
+        }
+    }
+    test {
+        java {
+            srcDirs += project(':core:dataguard-fieldpaths').sourceSets.test.java.srcDirs.toList().findAll {
+                // Remove generated-src from tms-paths, because we should use generated code in this module with
+                // custom ANTLR version
+                dir -> !dir.toString().contains("generated-src")
+            }
+        }
+    }
+}

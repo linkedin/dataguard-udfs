@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fDouble",
+        "type": "long",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fDouble": 123.45
+    },
+    {
+      "fDouble": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fDouble": 1.23
+    },
+    {
+      "fDouble": null
+    },
+    null
+  ],
+  "tmsPath": "fDouble",
+  "topColumn": "fDouble",
+  "condition": true,
+  "defaultValueString": "1.23d"
+}

@@ -1,0 +1,33 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fFloat",
+        "type": "float",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fFloat": 123.45
+    },
+    {
+      "fFloat": null
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fFloat": 0.0
+    },
+    {
+      "fFloat": 0.0
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fFloat')",
+  "topColumn": "fFloat",
+  "condition": true,
+  "defaultValueDataType": "'FLOAT'"
+}

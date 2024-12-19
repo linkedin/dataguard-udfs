@@ -1,0 +1,33 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fDouble",
+        "type": "double",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fDouble": 123.45
+    },
+    {
+      "fDouble": null
+    }
+  ],
+  "expectedOutput": [
+    {
+      "fDouble": 0.0
+    },
+    {
+      "fDouble": 0.0
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.fDouble')",
+  "topColumn": "fDouble",
+  "condition": true,
+  "defaultValueDataType": "'DOUBLE'"
+}

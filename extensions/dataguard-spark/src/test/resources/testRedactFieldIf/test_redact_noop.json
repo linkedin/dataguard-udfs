@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fBool",
+        "type": "boolean",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fBool": true
+    },
+    {
+      "fBool": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fBool": true
+    },
+    {
+      "fBool": null
+    },
+    null
+  ],
+  "tmsPath": "fBool",
+  "topColumn": "fBool",
+  "condition": false,
+  "defaultValueString": "false"
+}

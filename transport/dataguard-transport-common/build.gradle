@@ -1,0 +1,27 @@
+dependencies {
+  // NOTE: This module is supposed to be lightweight, and reusable across
+  // any other modules in this project. Please be cautious about introducing
+  // any other project dependencies or heavy external dependencies here.
+  implementation rootProject.ext.guava
+  implementation rootProject.ext.transportApi
+  implementation rootProject.ext.transportTypeSystem
+  testImplementation rootProject.ext.transportApi
+}
+
+// Expose test artifacts as a jar
+configurations {
+  testArtifacts {
+    // This is needed because the consumers need the runtime
+    // dependencies of the test code. Otherwise, consumers will
+    // need to fetch these dependencies themselves on adhoc basis.
+    extendsFrom testRuntimeClasspath
+  }
+}
+
+task testJar(type: Jar) {
+  from sourceSets.test.output
+  classifier = 'tests'
+}
+
+artifacts.add('testArtifacts', testJar)
+

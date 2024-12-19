@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fLong",
+        "type": "long",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fLong": 12345
+    },
+    {
+      "fLong": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fLong": 123
+    },
+    {
+      "fLong": null
+    },
+    null
+  ],
+  "tmsPath": "fLong",
+  "topColumn": "fLong",
+  "condition": true,
+  "defaultValueString": "123l"
+}

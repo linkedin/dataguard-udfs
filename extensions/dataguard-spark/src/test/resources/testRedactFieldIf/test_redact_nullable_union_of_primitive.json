@@ -1,0 +1,17 @@
+{
+  "schema": {"type":"struct","fields":[{"name":"e","type":"integer","nullable":true,"metadata":{}}]},
+  "input": [
+    {"e":78},
+    {"e":null},
+    null
+  ],
+  "expectedOutput": [
+    {"e":456},
+    {"e":null},
+    null
+  ],
+  "tmsPath": "e[type=int]",
+  "topColumn": "e",
+  "condition": true,
+  "defaultValueString": "456"
+}

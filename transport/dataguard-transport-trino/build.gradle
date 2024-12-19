@@ -1,0 +1,26 @@
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  }
+}
+
+dependencies {
+  implementation (rootProject.ext.transportTrino) {
+    exclude group: 'org.apache.hadoop', module: 'hadoop-common'
+  }
+  implementation rootProject.ext.airliftSlice
+  implementation rootProject.ext.airliftUnits
+  implementation rootProject.ext.guava
+  implementation rootProject.ext.transportApi
+  implementation rootProject.ext.transportTypeSystem
+  implementation project(':core:dataguard-fieldpaths-antlr_4_11_1')
+  implementation project(':transport:dataguard-transport-common')
+  // We can remove this in the final UDF module
+  compileOnly rootProject.ext.trinoSpi
+  testImplementation rootProject.ext.trinoSpi
+  testImplementation rootProject.ext.guava
+  testImplementation rootProject.ext.trinoMainTests
+  testImplementation rootProject.ext.trinoTesting
+//  testImplementation spec.external.testng
+}
+

@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "TRUE",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "FALSE",
+    "NULL"
+  ],
+  "tmsPath": "fBool[type=bool]",
+  "condition": true,
+  "defaultValueString": "FALSE",
+}

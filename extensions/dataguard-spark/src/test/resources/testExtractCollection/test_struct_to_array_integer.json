@@ -1,0 +1,97 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "y",
+              "type": {
+                "type": "array",
+                "elementType": {
+                  "type": "struct",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "type": "integer",
+                      "nullable": true,
+                      "metadata": {}
+                    }
+                  ]
+                },
+                "containsNull": true
+              },
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "nullable": true
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": {
+        "y": [
+          {
+            "id": 123
+          },
+          {
+            "id": 456
+          }
+        ]
+      }
+    },
+    {
+      "x": {
+        "y": [
+          {
+            "id": 321
+          },
+          {
+            "id": 654
+          }
+        ]
+      }
+    },
+    null
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "123",
+        "456"
+      ]
+    },
+    {
+      "extracted": [
+        "321",
+        "654"
+      ]
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "x",
+  "pathName": "x[type=rootStruct].y.[type=someStruct].id"
+}

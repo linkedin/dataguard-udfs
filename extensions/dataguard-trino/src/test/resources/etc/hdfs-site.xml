@@ -1,0 +1,9 @@
+<!--
+# Dummy configuration for HDFS local filesystem
+-->
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+</configuration>

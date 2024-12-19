@@ -1,0 +1,15 @@
+{
+  "inputStrings": [
+    "CAST (ROW(ROW(TRUE, TRUE)) AS ROW(b ROW(fBool1 BOOLEAN, fBool2 BOOLEAN)))",
+    "CAST (ROW(ROW(NULL, NULL)) AS ROW(b ROW(fBool1 BOOLEAN, fBool2 BOOLEAN)))",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "CAST (ROW(ROW(FALSE, FALSE)) AS ROW(b ROW(fBool1 BOOLEAN, fBool2 BOOLEAN)))",
+    "CAST (ROW(ROW(NULL, NULL)) AS ROW(b ROW(fBool1 BOOLEAN, fBool2 BOOLEAN)))",
+    "NULL"
+  ],
+  "tmsPath": "j.b.fBool1###j.b.fBool2",
+  "condition": true,
+  "defaultValueString": "FALSE"
+}

@@ -1,0 +1,131 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "y",
+                "type": {
+                  "type": "struct",
+                  "fields": [{
+                    "name": "subArr",
+                    "type": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "struct",
+                        "fields": [
+                          {
+                            "name": "id",
+                            "type": "string",
+                            "nullable": true,
+                            "metadata": {}
+                          }
+                        ]
+                      },
+                      "containsNull": true
+                    },
+                    "nullable": true
+                  }]
+                },
+                "nullable": true
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": [
+        {
+          "y": {
+            "subArr": [
+              {
+                "id": "urn:li:member:123"
+              },
+              {
+                "id": "urn:li:member:456"
+              }
+            ]
+          }
+        },
+        {
+          "y": {
+            "subArr": [
+              {
+                "id": "urn:li:member:234"
+              },
+              {
+                "id": "urn:li:member:567"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "y": {
+            "subArr": [
+              {
+                "id": "urn:li:member:321"
+              },
+              {
+                "id": "urn:li:member:654"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    null
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "urn:li:member:123",
+        "urn:li:member:456",
+        "urn:li:member:234",
+        "urn:li:member:567"
+      ]
+    },
+    {
+      "extracted": [
+        "urn:li:member:321",
+        "urn:li:member:654"
+      ]
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "x",
+  "pathName": "x.[type=array].y.subArr.[type=array].id",
+  "expectedConsents": [true, false, true]
+}

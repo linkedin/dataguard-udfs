@@ -1,0 +1,130 @@
+{
+  "inputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "x",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "y",
+                "type": {
+                  "type": "struct",
+                  "fields": [{
+                    "name": "subArr",
+                    "type": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "struct",
+                        "fields": [
+                          {
+                            "name": "id",
+                            "type": "integer",
+                            "nullable": true,
+                            "metadata": {}
+                          }
+                        ]
+                      },
+                      "containsNull": true
+                    },
+                    "nullable": true
+                  }]
+                },
+                "nullable": true
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "x": [
+        {
+          "y": {
+            "subArr": [
+              {
+                "id": 123
+              },
+              {
+                "id": 456
+              }
+            ]
+          }
+        },
+        {
+          "y": {
+            "subArr": [
+              {
+                "id": 234
+              },
+              {
+                "id": 567
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "y": {
+            "subArr": [
+              {
+                "id": 321
+              },
+              {
+                "id": 654
+              }
+            ]
+          }
+        }
+      ]
+    },
+    null
+  ],
+  "expectedOutputSchema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "extracted",
+        "type": {
+          "type": "array",
+          "elementType": "string",
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "expectedOutput": [
+    {
+      "extracted": [
+        "123",
+        "456",
+        "234",
+        "567"
+      ]
+    },
+    {
+      "extracted": [
+        "321",
+        "654"
+      ]
+    },
+    {
+      "extracted": []
+    }
+  ],
+  "idField": "x",
+  "pathName": "x.[type=array].y.subArr.[type=array].id"
+}

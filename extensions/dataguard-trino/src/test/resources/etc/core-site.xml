@@ -1,0 +1,13 @@
+<!--
+# Dummy configuration for HDFS local filesystem
+-->
+<configuration>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/var/tmp</value>
+  </property>
+  <property>
+    <name>fs.default.name</name>
+    <value>file:///</value>
+  </property>
+</configuration>

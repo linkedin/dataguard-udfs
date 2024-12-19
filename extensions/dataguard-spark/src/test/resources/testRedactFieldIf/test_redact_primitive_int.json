@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "fInt",
+        "type": "integer",
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "fInt": 123
+    },
+    {
+      "fInt": null
+    },
+    null
+  ],
+  "expectedOutput": [
+    {
+      "fInt": 456
+    },
+    {
+      "fInt": null
+    },
+    null
+  ],
+  "tmsPath": "fInt",
+  "topColumn": "fInt",
+  "condition": true,
+  "defaultValueString": "456"
+}

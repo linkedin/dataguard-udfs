@@ -1,0 +1,156 @@
+{
+  "schema": {
+    "type": "struct",
+    "fields": [
+      {
+        "name": "sections",
+        "type": {
+          "type": "array",
+          "elementType": {
+            "type": "struct",
+            "fields": [
+              {
+                "name": "section",
+                "type": "string",
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "id",
+                "type": "string",
+                "nullable": true,
+                "metadata": {}
+              },
+              {
+                "name": "terms",
+                "type": {
+                  "type": "array",
+                  "elementType": {
+                    "type": "struct",
+                    "fields": [
+                      {
+                        "name": "term",
+                        "type": "string",
+                        "nullable": true,
+                        "metadata": {}
+                      },
+                      {
+                        "name": "value",
+                        "type": "float",
+                        "nullable": true,
+                        "metadata": {}
+                      }
+                    ]
+                  },
+                  "containsNull": true
+                },
+                "nullable": true,
+                "metadata": {}
+              }
+            ]
+          },
+          "containsNull": true
+        },
+        "nullable": true,
+        "metadata": {}
+      }
+    ]
+  },
+  "input": [
+    {
+      "sections": [
+        {
+          "section": "member.ad.footprint.xgbleaves.industryBucketsLong",
+          "id": "2477075",
+          "terms": [
+            {
+              "term": "PROFESSIONAL_TRAINING",
+              "value": 31.0
+            },
+            {
+              "term": "DESIGN",
+              "value": 31.0
+            },
+            {
+              "term": "OTHER",
+              "value": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sections": [
+        {
+          "section": "member.ad.footprint.xgbleaves.industryBucketsNotLong",
+          "id": "2477076",
+          "terms": [
+            {
+              "term": "PROFESSIONAL_TRAINING",
+              "value": 32.0
+            },
+            {
+              "term": "DESIGN",
+              "value": 32.0
+            },
+            {
+              "term": "OTHER",
+              "value": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "expectedOutput": [
+    {
+      "pushVersion": 123,
+      "sections": [
+        {
+          "section": "member.ad.footprint.xgbleaves.industryBucketsLong",
+          "id": "2477075",
+          "terms": [
+            {
+              "term": "PROFESSIONAL_TRAINING",
+              "value": 0.0
+            },
+            {
+              "term": "DESIGN",
+              "value": 0.0
+            },
+            {
+              "term": "OTHER",
+              "value": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sections": [
+        {
+          "section": "member.ad.footprint.xgbleaves.industryBucketsNotLong",
+          "id": "2477076",
+          "terms": [
+            {
+              "term": "PROFESSIONAL_TRAINING",
+              "value": 32.0
+            },
+            {
+              "term": "DESIGN",
+              "value": 32.0
+            },
+            {
+              "term": "OTHER",
+              "value": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dataguardPaths": "ARRAY('$.sections[?(@.section == \\'member.ad.footprint.xgbleaves.industryBucketsLong\\')][:].terms[?(@.term == \\'PROFESSIONAL_TRAINING\\')][:].value','$.sections[?(@.section == \\'member.ad.footprint.xgbleaves.industryBucketsLong\\')][:].terms[?(@.term == \\'DESIGN\\')][:].value')",
+  "topColumn": "sections",
+  "condition": true,
+  "defaultValueDataType": "'FLOAT'"
+}

@@ -1,0 +1,15 @@
+{
+  "inputStrings": [
+    "CAST (ROW(TRUE, 123) AS ROW(fBool BOOLEAN, fInt INTEGER))",
+    "CAST (ROW(NULL, 123) AS ROW(fBool BOOLEAN, fInt INTEGER))",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "CAST (ROW(FALSE, 123) AS ROW(fBool BOOLEAN, fInt INTEGER))",
+    "CAST (ROW(NULL, 123) AS ROW(fBool BOOLEAN, fInt INTEGER))",
+    "NULL"
+  ],
+  "tmsPath": "b.fBool",
+  "condition": true,
+  "defaultValueString": "FALSE"
+}

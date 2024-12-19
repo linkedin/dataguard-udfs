@@ -1,0 +1,12 @@
+apply plugin: 'scala'
+
+dependencies {
+  // use compileOnly for dependencies provided on cluster
+  compileOnly rootProject.ext.scalaLibrary
+  compileOnly rootProject.ext.sparkSql_2_12
+  implementation project(':transport:dataguard-transport-common')
+  implementation rootProject.ext.transportApi
+  implementation rootProject.ext.transportSpark
+  implementation rootProject.ext.transportTypeSystem
+  testImplementation rootProject.ext.sparkSql_2_12
+}

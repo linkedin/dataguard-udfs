@@ -1,0 +1,13 @@
+{
+  "inputStrings": [
+    "CAST(123.45 AS DOUBLE)",
+    "NULL"
+  ],
+  "expectedOutputStrings": [
+    "CAST(1.23 AS DOUBLE)",
+    "NULL"
+  ],
+  "tmsPath": "fDouble",
+  "condition": true,
+  "defaultValueString": "CAST(1.23 AS DOUBLE)"
+}
